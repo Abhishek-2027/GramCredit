@@ -87,13 +87,19 @@ DATABASE_NAME=gramcredit
 ```
 
 #### MongoDB Atlas
-If you want to connect to Atlas instead of local MongoDB, use your Atlas URI:
+If you want to connect to Atlas instead of local MongoDB, use your Atlas URI.
+
+1. In Atlas, create a database user under `Database Access`.
+2. Add your IP address under `Network Access` (or use `0.0.0.0/0` for development).
+3. Click `Connect` for your cluster and choose `Connect your application`.
+4. Copy the Python connection string and replace the placeholders.
+
 ```env
-MONGODB_URL=mongodb+srv://<username>:<password>@<cluster-address>/<dbname>?retryWrites=true&w=majority
+MONGODB_URL=mongodb+srv://<username>:<password>@<cluster-address>/gramcredit?retryWrites=true&w=majority
 DATABASE_NAME=gramcredit
 ```
 
-> Use the connection string provided by MongoDB Atlas, replace `<username>`, `<password>`, `<cluster-address>`, and `<dbname>`.
+> Do not commit `backend/.env` to GitHub. Use `backend/.env.example` as a template.
 
 Then run the backend server:
 ```bash
