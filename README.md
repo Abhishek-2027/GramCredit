@@ -78,16 +78,22 @@ pip install -r requirements.txt
 ```
 
 ### 2. MongoDB Setup
-Create a `.env` file in `backend/` with the following values:
+Create a `.env` file in `backend/` with the following values.
+
+#### Local MongoDB
 ```env
 MONGODB_URL=mongodb://localhost:27017
 DATABASE_NAME=gramcredit
 ```
 
-Start MongoDB locally by running:
-```powershell
-net start MongoDB
+#### MongoDB Atlas
+If you want to connect to Atlas instead of local MongoDB, use your Atlas URI:
+```env
+MONGODB_URL=mongodb+srv://<username>:<password>@<cluster-address>/<dbname>?retryWrites=true&w=majority
+DATABASE_NAME=gramcredit
 ```
+
+> Use the connection string provided by MongoDB Atlas, replace `<username>`, `<password>`, `<cluster-address>`, and `<dbname>`.
 
 Then run the backend server:
 ```bash
