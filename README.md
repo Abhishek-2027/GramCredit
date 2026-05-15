@@ -38,22 +38,23 @@
 ## 📂 Project Structure
 
 ```text
-internship/
+GramCredit/
 ├── backend/            # FastAPI Backend
 │   ├── app/
 │   │   ├── api/        # API Endpoints (Auth, KYC)
 │   │   ├── core/       # Config and Security
 │   │   ├── db/         # MongoDB Connection
-│   │   ├── models/     # DB Models
-│   │   └── schemas/    # Pydantic Schemas
-│   └── requirements.txt
+│   │   ├── schemas/    # Pydantic Schemas
+│   ├── requirements.txt
+│   └── print_users.py  # Helper script to preview MongoDB users
 ├── frontend/           # React Frontend
 │   ├── src/
-│   │   ├── components/ # Reusable Components
+│   │   ├── assets/
 │   │   ├── pages/      # Dashboard and Auth Pages
 │   │   ├── services/   # API Integration
 │   │   └── App.jsx     # Main Routing
-│   └── package.json
+│   ├── package.json
+│   └── tsconfig.json
 └── .gitignore          # Project-wide ignore rules
 ```
 
@@ -74,13 +75,28 @@ source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
+```
 
-# Run the server
+### 2. MongoDB Setup
+Create a `.env` file in `backend/` with the following values:
+```env
+MONGODB_URL=mongodb://localhost:27017
+DATABASE_NAME=gramcredit
+```
+
+Start MongoDB locally by running:
+```powershell
+net start MongoDB
+```
+
+Then run the backend server:
+```bash
 uvicorn app.main:app --reload
 ```
-*The backend will be available at `http://localhost:8000`. Documentation at `http://localhost:8000/docs`.*
 
-### 2. Frontend Setup
+The backend will be available at `http://localhost:8000`. Documentation at `http://localhost:8000/docs`.
+
+### 3. Frontend Setup
 ```bash
 cd frontend
 # Install dependencies
@@ -90,6 +106,13 @@ npm install
 npm run dev
 ```
 *The frontend will be available at `http://localhost:5173`.*
+
+### 4. Preview MongoDB Users
+From the `backend/` folder, run:
+```bash
+python print_users.py
+```
+This script prints users from the `gramcredit` database without exposing passwords.
 
 ---
 
